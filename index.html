@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interimswim – öffentliches Baden auf Zeit</title>
+<meta name="description" content="Interimswim vermietet Kommunen ein Schwimmbad mit 25-Meter-Becken für die Zeit der Hallenbadsanierung.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="logo/signet.svg">
+<style>
+@font-face { font-family: 'Unbounded'; src: url('fonts/unbounded.woff2') format('woff2'); font-weight: 200 900; font-display: swap; }
+@font-face { font-family: 'Hanken Grotesk'; src: url('fonts/hanken-grotesk.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'JetBrains Mono'; src: url('fonts/jetbrains-mono.woff2') format('woff2'); font-weight: 100 800; font-display: swap; }
+html { scroll-behavior: smooth; }
+body { margin: 0; }
+img { max-width: 100%; }
+/* Layout: eine Spalte mit max. 1080px, Abschnitte als gestapelte Bänder; die versetzten pinken Blöcke des Logos kehren als Überschriften-Marker wieder. */
+:root {
+  --bg: #F6F3F7;
+  --surface: #FFFFFF;
+  --fg: #130F15;
+  --muted: #5F5665;
+  --line: #D9D1DD;
+  --pink: #E58BF5;
+  --on-pink: #130F15;
+  --water: #BFE6F2;
+  --display: 'Unbounded', 'Arial Black', sans-serif;
+  --body: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141016; --surface: #1E1821; --fg: #F4EEF6; --muted: #B3A8B9; --line: #3A313F;
+    --pink: #E58BF5; --on-pink: #130F15; --water: #2C5A69; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141016; --surface: #1E1821; --fg: #F4EEF6; --muted: #B3A8B9; --line: #3A313F;
+  --pink: #E58BF5; --on-pink: #130F15; --water: #2C5A69; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.6; padding-inline: 20px; }
+a { color: inherit; text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+.wrap { max-width: 1080px; margin-inline: auto; display: flex; flex-direction: column; gap: 88px; padding-block: 24px 64px; }
+p { margin: 0; max-width: 62ch; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+
+header.top { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; justify-content: space-between; }
+.mark-s { font-family: var(--display); font-weight: 900; font-size: 18px; line-height: 0.8; background: var(--pink); color: var(--on-pink); padding: 9px 11px 10px; text-decoration: none; }
+nav { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 15px; font-weight: 500; }
+nav a { text-decoration: none; }
+nav a:hover { text-decoration: underline; }
+
+.hero { display: flex; flex-direction: column; gap: 44px; }
+.lane { display: flex; align-items: center; gap: 0.3em; background: var(--pink); color: var(--on-pink); padding: 0.28em 0.34em 0.3em; font-family: var(--display); font-weight: 900; font-size: clamp(26px, 8.4vw, 88px); line-height: 0.8; letter-spacing: -0.01em; white-space: nowrap; }
+.lane i { display: block; background: var(--on-pink); }
+.lane .line { flex: 1 1 0; height: 0.12em; min-width: 0; }
+.lane .tee { width: 0.12em; height: 0.66em; margin-left: -0.3em; }
+.claim { font-size: clamp(11px, 3.2vw, 18px); letter-spacing: 0.2em; font-weight: 500; margin-top: 14px; text-align: right; }
+.hero-text { display: flex; flex-direction: column; gap: 20px; min-width: 0; max-width: 760px; }
+.hero h1 { font-family: var(--body); font-weight: 700; font-size: clamp(28px, 4.4vw, 42px); line-height: 1.15; }
+.lead { font-size: 19px; color: var(--muted); }
+.btn { display: inline-block; width: fit-content; background: var(--fg); color: var(--bg); font-weight: 700; text-decoration: none; padding: 13px 22px; }
+.btn:hover { background: var(--pink); color: var(--on-pink); }
+
+section { display: flex; flex-direction: column; gap: 28px; }
+h2 { font-family: var(--display); font-weight: 700; font-size: clamp(20px, 3.2vw, 28px); line-height: 1.2; }
+h2 span { background: var(--pink); color: var(--on-pink); padding: 0.18em 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.sub { color: var(--muted); }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 28px 40px; }
+.fact { display: flex; flex-direction: column; gap: 8px; border-top: 3px solid var(--fg); padding-top: 14px; }
+.fact b { font-family: var(--display); font-weight: 900; font-size: 30px; line-height: 1.1; }
+.fact small { color: var(--muted); font-size: 13px; }
+
+.bad { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 36px 56px; align-items: start; }
+.specs { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0; }
+.specs dt, .specs dd { margin: 0; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.specs dt { color: var(--muted); padding-right: 22px; font-size: 15px; }
+.specs dd { font-family: var(--mono); font-size: 14.5px; font-variant-numeric: tabular-nums; }
+.plan { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); padding: 14px; }
+.plan svg { display: block; width: 100%; min-width: 300px; height: auto; }
+.plan text { font-family: var(--mono); font-size: 10.5px; fill: var(--fg); }
+.plan .dim { fill: var(--muted); }
+
+ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 28px 32px; }
+ol.steps li { counter-increment: s; display: flex; flex-direction: column; gap: 6px; }
+ol.steps li::before { content: counter(s); font-family: var(--display); font-weight: 900; font-size: 15px; background: var(--pink); color: var(--on-pink); width: 2em; height: 2em; display: grid; place-items: center; margin-bottom: 6px; }
+ol.steps h3 { font-size: 17px; }
+ol.steps p { font-size: 15.5px; color: var(--muted); }
+
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px; }
+.split div { background: var(--surface); border: 1px solid var(--line); padding: 24px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.split h3 { font-size: 18px; }
+.split ul { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 6px; }
+
+.faq { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+details { border-bottom: 1px solid var(--line); padding: 16px 0; }
+summary { cursor: pointer; font-weight: 700; }
+details p { margin-top: 10px; color: var(--muted); }
+
+.contact { background: var(--pink); color: var(--on-pink); padding: clamp(24px, 5vw, 48px); gap: 16px; }
+.contact h2 { font-size: clamp(22px, 3.6vw, 32px); }
+.contact .ph { font-family: var(--mono); font-size: 15px; user-select: all; }
+.note { font-size: 14px; }
+footer { color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 20px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="mark-s" href="#start" aria-label="Interimswim, Startseite">Interimswim</a>
+    <nav aria-label="Seitennavigation">
+      <a href="#bad">Das Bad</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#aufgaben">Wer macht was</a>
+      <a href="#fragen">Fragen</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
+
+  <div class="hero" id="start">
+    <div>
+      <div class="lane" role="img" aria-label="Interimswim">Interimswim<i class="line"></i><i class="tee"></i></div>
+      <div class="claim">öffentliches Baden auf Zeit</div>
+    </div>
+    <div class="hero-text">
+      <h1>Ihr Hallenbad wird saniert. Der Schwimmunterricht läuft weiter.</h1>
+      <p class="lead">Interimswim vermietet Kommunen ein vollwertiges Schwimmbad mit 25-Meter-Becken. Es steht auf einem Parkplatz oder einer anderen befestigten Fläche und zieht nach der Sanierung weiter.</p>
+      <a class="btn" href="#kontakt">Standort anfragen</a>
+    </div>
+  </div>
+
+  <section aria-labelledby="h-warum">
+    <h2 id="h-warum"><span>Warum es das braucht</span></h2>
+    <div class="facts">
+      <div class="fact"><b>Jedes zweite</b><p>bestehende Schwimmbad in Deutschland gilt als sanierungsbedürftig.</p><small>Bäderallianz, zitiert nach <a href="https://www.stuttgarter-zeitung.de/lokales/stuttgart/sanierungsbeduerftige-baeder-temporaer-geschlossen-diese-stuttgarter-schwimmbaeder-werden-erneuert-78944405.html">Stuttgarter Zeitung</a></small></div>
+      <div class="fact"><b>14 Mrd. €</b><p>Sanierungsstau schätzen Experten allein bei den öffentlichen Bädern.</p><small><a href="https://kommunal.de/geht-die-schwimmbadkultur-deutschland-baden">KOMMUNAL</a></small></div>
+      <div class="fact"><b>13-fach</b><p>überzeichnet war der Bundesaufruf 2026 mit 250 Mio. € für Schwimmbadsanierungen.</p><small><a href="https://dserver.bundestag.de/btd/21/083/2108319.pdf">Bundestag, Drucksache 21/8319</a></small></div>
+    </div>
+    <p>Jede Sanierung schließt ein Bad für ein bis drei Jahre. In dieser Zeit fallen Schulschwimmen, Kurse und Vereinstraining aus. Ein Schwimmcontainer ist dafür zu klein, ein eigenes Interimsgebäude kostet Millionen. Dazwischen liegt unser Bad.</p>
+  </section>
+
+  <section id="bad" aria-labelledby="h-bad">
+    <h2 id="h-bad"><span>Das Bad</span></h2>
+    <div class="bad">
+      <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+        <p>Alles steht über Gelände. Das Becken wird nicht eingegraben, der Umgang ist ein Podest auf Beckenrandhöhe, Umkleiden und Technik docken als Module an. So bleibt die Fläche darunter unversehrt und der Umzug bezahlbar.</p>
+        <dl class="specs">
+          <dt>Becken</dt><dd>25 × 10 m</dd>
+          <dt>Wassertiefe</dt><dd>1,35 m durchgehend</dd>
+          <dt>Halle</dt><dd>ca. 18 × 33 m, gedämmt</dd>
+          <dt>Untergrund</dt><dd>befestigte Fläche, kein Aushub</dd>
+          <dt>Wasser</dt><dd>Aufbereitung nach DIN 19643</dd>
+          <dt>Zugang</dt><dd>stufenlos über Rampe, Poollift</dd>
+          <dt>Mietzeit</dt><dd>ausgelegt auf 2 bis 5 Jahre</dd>
+        </dl>
+      </div>
+      <div class="plan" role="img" aria-label="Grundriss: Halle mit Becken, seitlich Umkleide- und Sanitärmodule, an der Stirnseite die Technikcontainer">
+        <svg viewBox="0 0 360 372">
+          <text x="20" y="16" class="dim">Grundriss, Prinzip</text>
+          <rect x="20" y="28" width="144" height="264" fill="none" stroke="var(--fg)" stroke-width="2"/>
+          <rect x="52" y="60" width="80" height="200" fill="var(--water)" stroke="var(--fg)" stroke-width="1"/>
+          <g stroke="var(--fg)" stroke-width="0.6" opacity="0.5"><line x1="68" y1="60" x2="68" y2="260"/><line x1="84" y1="60" x2="84" y2="260"/><line x1="100" y1="60" x2="100" y2="260"/><line x1="116" y1="60" x2="116" y2="260"/></g>
+          <g fill="var(--pink)" stroke="var(--fg)" stroke-width="1"><rect x="164" y="28" width="44" height="52"/><rect x="164" y="80" width="44" height="64"/><rect x="164" y="144" width="44" height="40"/><rect x="164" y="184" width="44" height="64"/><rect x="164" y="248" width="44" height="44"/></g>
+          <g fill="none" stroke="var(--fg)" stroke-width="1"><rect x="20" y="292" width="144" height="22"/><rect x="20" y="314" width="144" height="22"/></g>
+          <text x="216" y="58">Eingang, Aufsicht</text>
+          <text x="216" y="116">Umkleide 1</text>
+          <text x="216" y="168">Duschen, WC</text>
+          <text x="216" y="220">Umkleide 2</text>
+          <text x="216" y="274">Lager, Erste Hilfe</text>
+          <text x="172" y="307">Wasseraufbereitung</text>
+          <text x="172" y="329">Lüftung, Wärme</text>
+          <text x="92" y="164" text-anchor="middle">Becken</text>
+          <text x="92" y="178" text-anchor="middle">25 × 10 m</text>
+          <text x="92" y="281" text-anchor="middle" class="dim">Umgang</text>
+          <text x="20" y="360" class="dim">Halle 18 × 33 m · Maße sind Planungsstand</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="ablauf" aria-labelledby="h-ablauf">
+    <h2 id="h-ablauf"><span>So läuft es ab</span></h2>
+    <ol class="steps">
+      <li><h3>Standort prüfen</h3><p>Fläche, Tragfähigkeit des Untergrunds, Anschlüsse für Strom, Wasser und Abwasser.</p></li>
+      <li><h3>Genehmigung</h3><p>Befristete Baugenehmigung für den Standort, früh abgestimmt mit Bauaufsicht und Gesundheitsamt.</p></li>
+      <li><h3>Aufbau</h3><p>Lastverteilplatte, Becken, Podest, Halle und Module. Danach Probefüllung und Abnahme.</p></li>
+      <li><h3>Betrieb</h3><p>Die Kommune betreibt das Bad mit ihrem Personal. Wir warten die Anlage.</p></li>
+      <li><h3>Abbau</h3><p>Rückbau ohne Spuren. Das Bad zieht zum nächsten Standort.</p></li>
+    </ol>
+  </section>
+
+  <section id="aufgaben" aria-labelledby="h-aufgaben">
+    <h2 id="h-aufgaben"><span>Wer macht was</span></h2>
+    <div class="split">
+      <div>
+        <h3>Interimswim</h3>
+        <ul>
+          <li>Becken, Halle, Podest und Technik</li>
+          <li>Umkleide- und Sanitärmodule</li>
+          <li>Transport, Aufbau und Abbau</li>
+          <li>Statik und technische Unterlagen für den Bauantrag</li>
+          <li>Wartung der Anlage während der Mietzeit</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Kommune</h3>
+        <ul>
+          <li>Fläche und Medienanschlüsse</li>
+          <li>Bauantrag als Bauherrin</li>
+          <li>Betrieb, Wasseraufsicht und Reinigung</li>
+          <li>Belegung durch Schulen, Kurse und Vereine</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="fragen" aria-labelledby="h-fragen">
+    <h2 id="h-fragen"><span>Häufige Fragen</span></h2>
+    <div class="faq">
+      <details>
+        <summary>Reicht das Becken für Schwimmabzeichen?</summary>
+        <p>Für Schwimmunterricht und Anfängerkurse ist die durchgehende Tiefe von 1,35 m gut geeignet. Für Abzeichen, die Tieftauchen aus rund zwei Metern verlangen, reicht sie nicht. Dafür planen wir eine Variante mit tiefem Teilbereich.</p>
+      </details>
+      <details>
+        <summary>Braucht das Bad eine Baugenehmigung?</summary>
+        <p>Ja. Als fliegender Bau gilt eine Anlage in der Regel nur für wenige Monate. Bei einer Standzeit von Jahren ist eine reguläre, befristete Baugenehmigung nötig. Die Regeln unterscheiden sich je Bundesland.</p>
+      </details>
+      <details>
+        <summary>Wie viel Fläche wird gebraucht?</summary>
+        <p>Als Richtwert rund 25 × 40 m ebene, befestigte Fläche plus Zufahrt für Lkw. Ob ein Standort passt, klären wir bei einer Begehung.</p>
+      </details>
+      <details>
+        <summary>Was passiert mit dem Untergrund?</summary>
+        <p>Das Bad steht auf einer Lastverteilplatte. Es wird nichts ausgehoben und nichts im Boden verankert, soweit der Standort das zulässt. Nach dem Abbau ist die Fläche wieder nutzbar.</p>
+      </details>
+      <details>
+        <summary>Was kostet die Miete?</summary>
+        <p>Das hängt von Standort, Mietdauer und Ausstattung ab. Preise nennen wir, sobald das System fertig kalkuliert ist: [MIETPREIS AB].</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="contact" id="kontakt" aria-labelledby="h-kontakt">
+    <h2 id="h-kontakt" style="font-family:var(--display)">Wann schließt Ihr Bad?</h2>
+    <p>Schreiben Sie uns Zeitraum und möglichen Standort. Wir melden uns mit einer ersten Einschätzung.</p>
+    <p class="ph">[E-MAIL-ADRESSE] · [TELEFON]</p>
+    <p class="note">Interimswim ist in Gründung. Die Angaben auf dieser Seite beschreiben das geplante System und sind noch nicht verbindlich.</p>
+  </section>
+
+  <footer>
+    <span>Interimswim · [FIRMENNAME UND RECHTSFORM] · Berlin</span>
+    <span>[IMPRESSUM] · [DATENSCHUTZ]</span>
+  </footer>
+</div>
+</body>
+</html>
