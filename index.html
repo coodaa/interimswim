@@ -47,16 +47,16 @@ p { margin: 0; max-width: 62ch; }
 h1, h2, h3 { margin: 0; text-wrap: balance; }
 
 header.top { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; justify-content: space-between; }
-.mark-s { font-family: var(--display); font-weight: 900; font-size: 18px; line-height: 0.8; background: var(--pink); color: var(--on-pink); padding: 9px 11px 10px; text-decoration: none; }
+.mark-s { display: flex; align-items: center; gap: 0.3em; width: 250px; max-width: 100%; font-family: var(--display); font-weight: 900; font-size: 18px; line-height: 0.8; letter-spacing: -0.01em; white-space: nowrap; background: var(--pink); color: var(--on-pink); padding: 0.5em 0.6em 0.55em; text-decoration: none; }
 nav { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 15px; font-weight: 500; }
 nav a { text-decoration: none; }
 nav a:hover { text-decoration: underline; }
 
 .hero { display: flex; flex-direction: column; gap: 44px; }
 .lane { display: flex; align-items: center; gap: 0.3em; background: var(--pink); color: var(--on-pink); padding: 0.28em 0.34em 0.3em; font-family: var(--display); font-weight: 900; font-size: clamp(26px, 8.4vw, 88px); line-height: 0.8; letter-spacing: -0.01em; white-space: nowrap; }
-.lane i { display: block; background: var(--on-pink); }
-.lane .line { flex: 1 1 0; height: 0.12em; min-width: 0; }
-.lane .tee { width: 0.12em; height: 0.66em; margin-left: -0.3em; }
+.lane i, .mark-s i { display: block; background: var(--on-pink); }
+.lane .line, .mark-s .line { flex: 1 1 0; height: 0.12em; min-width: 0; }
+.lane .tee, .mark-s .tee { width: 0.12em; height: 0.66em; margin-left: -0.3em; }
 .claim { font-size: clamp(11px, 3.2vw, 18px); letter-spacing: 0.2em; font-weight: 500; margin-top: 14px; text-align: right; }
 .hero-text { display: flex; flex-direction: column; gap: 20px; min-width: 0; max-width: 760px; }
 .hero h1 { font-family: var(--body); font-weight: 700; font-size: clamp(28px, 4.4vw, 42px); line-height: 1.15; }
@@ -84,6 +84,15 @@ h2 span { background: var(--pink); color: var(--on-pink); padding: 0.18em 0.35em
 .plan text { font-family: var(--mono); font-size: 10.5px; fill: var(--fg); }
 .plan .dim { fill: var(--muted); }
 
+.ills { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 24px; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.ill { background: var(--surface); border: 1px solid var(--line); padding: 14px; overflow-x: auto; }
+.ill svg { display: block; width: 100%; min-width: 300px; height: auto; }
+.ill text { font-family: var(--mono); font-size: 11px; fill: var(--fg); }
+.ill .dim { fill: var(--muted); }
+figcaption { font-size: 14px; color: var(--muted); }
+.tag { font-family: var(--mono); font-size: 12px; background: var(--pink); color: var(--on-pink); padding: 2px 8px; width: fit-content; }
+.split .full { border: 2px solid var(--fg); }
 ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 28px 32px; }
 ol.steps li { counter-increment: s; display: flex; flex-direction: column; gap: 6px; }
 ol.steps li::before { content: counter(s); font-family: var(--display); font-weight: 900; font-size: 15px; background: var(--pink); color: var(--on-pink); width: 2em; height: 2em; display: grid; place-items: center; margin-bottom: 6px; }
@@ -110,11 +119,11 @@ footer { color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; g
 <body>
 <div class="wrap">
   <header class="top">
-    <a class="mark-s" href="#start" aria-label="Interimswim, Startseite">Interimswim</a>
+    <a class="mark-s" href="#start" aria-label="Interimswim, Startseite">Interimswim<i class="line"></i><i class="tee"></i></a>
     <nav aria-label="Seitennavigation">
       <a href="#bad">Das Bad</a>
       <a href="#ablauf">Ablauf</a>
-      <a href="#aufgaben">Wer macht was</a>
+      <a href="#modelle">Miete oder Full Service</a>
       <a href="#fragen">Fragen</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
@@ -127,7 +136,7 @@ footer { color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; g
     </div>
     <div class="hero-text">
       <h1>Ihr Hallenbad wird saniert. Der Schwimmunterricht läuft weiter.</h1>
-      <p class="lead">Interimswim vermietet Kommunen ein vollwertiges Schwimmbad mit 25-Meter-Becken. Es steht auf einem Parkplatz oder einer anderen befestigten Fläche und zieht nach der Sanierung weiter.</p>
+      <p class="lead">Interimswim vermietet Kommunen ein vollwertiges Schwimmbad mit 25-Meter-Becken. Es steht auf einem Parkplatz oder einer anderen befestigten Fläche und zieht nach der Sanierung weiter. Auf Wunsch übernehmen wir auch den Betrieb.</p>
       <a class="btn" href="#kontakt">Standort anfragen</a>
     </div>
   </div>
@@ -179,6 +188,58 @@ footer { color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; g
         </svg>
       </div>
     </div>
+    <div class="ills">
+      <figure>
+        <div class="ill" role="img" aria-label="Ansicht: die Halle steht auf einem Parkplatz, davor die Module mit Eingang, links eine Rampe, rechts die Technikcontainer">
+          <svg viewBox="0 0 520 240">
+            <line x1="110" y1="80" x2="470" y2="80" stroke="var(--muted)" stroke-width="1"/><line x1="110" y1="75" x2="110" y2="85" stroke="var(--muted)"/><line x1="470" y1="75" x2="470" y2="85" stroke="var(--muted)"/>
+            <text x="290" y="72" text-anchor="middle" class="dim">33 m</text>
+            <rect x="106" y="96" width="368" height="14" fill="var(--line)" stroke="var(--fg)" stroke-width="1.5"/>
+            <rect x="110" y="110" width="360" height="90" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.5"/>
+            <g stroke="var(--line)" stroke-width="1"><line x1="150" y1="111" x2="150" y2="147"/><line x1="190" y1="111" x2="190" y2="147"/><line x1="230" y1="111" x2="230" y2="147"/><line x1="270" y1="111" x2="270" y2="147"/><line x1="430" y1="111" x2="430" y2="199"/></g>
+            <rect x="292" y="120" width="166" height="20" fill="var(--pink)"/>
+            <text x="298" y="134" style="font-family:var(--display);font-weight:900;font-size:11px;fill:var(--on-pink)">Interimswim</text>
+            <rect x="396" y="129" width="54" height="2" fill="var(--on-pink)"/><rect x="448" y="124" width="2" height="12" fill="var(--on-pink)"/>
+            <g fill="var(--pink)" stroke="var(--fg)" stroke-width="1.5"><rect x="130" y="148" width="56" height="52"/><rect x="186" y="148" width="56" height="52"/><rect x="242" y="148" width="56" height="52"/><rect x="298" y="148" width="56" height="52"/><rect x="354" y="148" width="56" height="52"/></g>
+            <line x1="130" y1="180" x2="410" y2="180" stroke="var(--fg)" stroke-width="1"/>
+            <rect x="146" y="156" width="14" height="24" fill="var(--surface)" stroke="var(--fg)" stroke-width="1"/>
+            <g fill="var(--surface)" stroke="var(--fg)" stroke-width="1"><rect x="204" y="156" width="20" height="8"/><rect x="260" y="156" width="20" height="8"/><rect x="316" y="156" width="20" height="8"/><rect x="372" y="156" width="20" height="8"/></g>
+            <polygon points="34,200 130,200 130,180" fill="var(--line)" stroke="var(--fg)" stroke-width="1.5"/>
+            <line x1="34" y1="188" x2="130" y2="168" stroke="var(--fg)" stroke-width="1"/><line x1="34" y1="188" x2="34" y2="200" stroke="var(--fg)"/><line x1="82" y1="178" x2="82" y2="190" stroke="var(--fg)"/><line x1="130" y1="168" x2="130" y2="180" stroke="var(--fg)"/>
+            <g stroke="var(--fg)" stroke-width="2" stroke-linecap="round"><line x1="100" y1="186" x2="100" y2="172"/><line x1="62" y1="194" x2="62" y2="185"/></g>
+            <circle cx="100" cy="167" r="3.5" fill="var(--fg)"/><circle cx="62" cy="181" r="3" fill="var(--fg)"/>
+            <g fill="var(--surface)" stroke="var(--fg)" stroke-width="1.5"><rect x="476" y="166" width="38" height="34"/></g>
+            <line x1="484" y1="166" x2="484" y2="150" stroke="var(--fg)" stroke-width="1.5"/>
+            <line x1="10" y1="200" x2="518" y2="200" stroke="var(--fg)" stroke-width="2"/>
+            <g stroke="var(--muted)" stroke-width="1"><line x1="20" y1="208" x2="20" y2="222"/><line x1="60" y1="208" x2="60" y2="222"/><line x1="100" y1="208" x2="100" y2="222"/><line x1="140" y1="208" x2="140" y2="222"/><line x1="180" y1="208" x2="180" y2="222"/></g>
+            <text x="200" y="220" class="dim">Parkplatz, unverändert</text>
+            <text x="20" y="160">Rampe</text><text x="516" y="144" text-anchor="end">Technik</text>
+          </svg>
+        </div>
+        <figcaption>Illustration: So steht das Bad auf einem Parkplatz. Eingang und Umkleiden liegen in den Modulen vor der Halle.</figcaption>
+      </figure>
+      <figure>
+        <div class="ill" role="img" aria-label="Querschnitt: Becken über Gelände, Podest auf Beckenrandhöhe, darüber die Halle">
+          <svg viewBox="0 0 520 240">
+            <polyline points="80,200 80,112 260,60 440,112 440,200" fill="none" stroke="var(--fg)" stroke-width="3" stroke-linejoin="round"/>
+            <rect x="170" y="152" width="180" height="48" fill="var(--water)"/>
+            <g fill="var(--fg)"><rect x="166" y="146" width="4" height="54"/><rect x="350" y="146" width="4" height="54"/><rect x="84" y="146" width="82" height="4"/><rect x="354" y="146" width="82" height="4"/></g>
+            <g stroke="var(--fg)" stroke-width="1.2"><line x1="100" y1="150" x2="100" y2="200"/><line x1="140" y1="150" x2="140" y2="200"/><line x1="380" y1="150" x2="380" y2="200"/><line x1="420" y1="150" x2="420" y2="200"/><line x1="166" y1="162" x2="152" y2="200"/><line x1="354" y1="162" x2="368" y2="200"/></g>
+            <g fill="var(--pink)" stroke="var(--fg)" stroke-width="0.8"><circle cx="215" cy="152" r="2.5"/><circle cx="260" cy="152" r="2.5"/><circle cx="305" cy="152" r="2.5"/></g>
+            <circle cx="236" cy="151" r="4" fill="var(--fg)"/><rect x="242" y="150" width="12" height="3" fill="var(--pink)" stroke="var(--fg)" stroke-width="0.6"/>
+            <circle cx="286" cy="151" r="4" fill="var(--fg)"/>
+            <line x1="394" y1="146" x2="394" y2="126" stroke="var(--fg)" stroke-width="2.4" stroke-linecap="round"/><circle cx="394" cy="120" r="4.5" fill="var(--fg)"/><line x1="394" y1="131" x2="380" y2="138" stroke="var(--fg)" stroke-width="2" stroke-linecap="round"/>
+            <rect x="60" y="200" width="400" height="6" fill="var(--line)" stroke="var(--fg)" stroke-width="1"/>
+            <line x1="20" y1="206" x2="500" y2="206" stroke="var(--fg)" stroke-width="2"/>
+            <text x="260" y="182" text-anchor="middle">1,35 m tief</text>
+            <text x="92" y="140">Podest</text>
+            <text x="260" y="98" text-anchor="middle" class="dim">gedämmte Halle</text>
+            <text x="260" y="226" text-anchor="middle" class="dim">Lastverteilplatte auf bestehender Fläche</text>
+          </svg>
+        </div>
+        <figcaption>Illustration: Querschnitt. Das Becken steht über Gelände, der Umgang liegt als Podest auf Beckenrandhöhe.</figcaption>
+      </figure>
+    </div>
   </section>
 
   <section id="ablauf" aria-labelledby="h-ablauf">
@@ -187,34 +248,42 @@ footer { color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; g
       <li><h3>Standort prüfen</h3><p>Fläche, Tragfähigkeit des Untergrunds, Anschlüsse für Strom, Wasser und Abwasser.</p></li>
       <li><h3>Genehmigung</h3><p>Befristete Baugenehmigung für den Standort, früh abgestimmt mit Bauaufsicht und Gesundheitsamt.</p></li>
       <li><h3>Aufbau</h3><p>Lastverteilplatte, Becken, Podest, Halle und Module. Danach Probefüllung und Abnahme.</p></li>
-      <li><h3>Betrieb</h3><p>Die Kommune betreibt das Bad mit ihrem Personal. Wir warten die Anlage.</p></li>
+      <li><h3>Betrieb</h3><p>Sie betreiben das Bad selbst oder geben den Betrieb im Full Service an uns ab. Die Anlage warten wir in beiden Fällen.</p></li>
       <li><h3>Abbau</h3><p>Rückbau ohne Spuren. Das Bad zieht zum nächsten Standort.</p></li>
     </ol>
   </section>
 
-  <section id="aufgaben" aria-labelledby="h-aufgaben">
-    <h2 id="h-aufgaben"><span>Wer macht was</span></h2>
+  <section id="modelle" aria-labelledby="h-modelle">
+    <h2 id="h-modelle"><span>Miete oder Full Service</span></h2>
+    <p>Manche Kommunen haben während der Sanierung ihr eigenes Bäderteam frei. Andere wollen sich in dieser Zeit um nichts kümmern müssen. Deshalb planen wir zwei Modelle.</p>
     <div class="split">
       <div>
-        <h3>Interimswim</h3>
+        <h3>Miete</h3>
+        <p>Wir stellen das Bad, Sie betreiben es mit Ihrem Personal.</p>
         <ul>
           <li>Becken, Halle, Podest und Technik</li>
           <li>Umkleide- und Sanitärmodule</li>
           <li>Transport, Aufbau und Abbau</li>
           <li>Statik und technische Unterlagen für den Bauantrag</li>
+          <li>Einweisung Ihres Teams</li>
           <li>Wartung der Anlage während der Mietzeit</li>
         </ul>
       </div>
-      <div>
-        <h3>Kommune</h3>
+      <div class="full">
+        <span class="tag">auf Wunsch</span>
+        <h3>Full Service</h3>
+        <p>Alles aus der Miete, dazu übernehmen wir den laufenden Betrieb.</p>
         <ul>
-          <li>Fläche und Medienanschlüsse</li>
-          <li>Bauantrag als Bauherrin</li>
-          <li>Betrieb, Wasseraufsicht und Reinigung</li>
-          <li>Belegung durch Schulen, Kurse und Vereine</li>
+          <li>Betriebsleitung und Fachpersonal für die Wasseraufsicht</li>
+          <li>Reinigung, Hygiene und tägliche Wasserkontrollen</li>
+          <li>Belegungsplan für Schulen, Kurse und Vereine</li>
+          <li>Schwimmkurse mit Partnern vor Ort</li>
+          <li>Kasse und Einlass, wenn öffentliches Schwimmen gewünscht ist</li>
+          <li>Störungsdienst und ein fester Ansprechpartner</li>
         </ul>
       </div>
     </div>
+    <p>In beiden Modellen stellt die Kommune die Fläche und die Anschlüsse für Strom, Wasser und Abwasser und tritt beim Bauantrag als Bauherrin auf.</p>
   </section>
 
   <section id="fragen" aria-labelledby="h-fragen">
